@@ -23,6 +23,7 @@ class BolsaFamiliaPagamentos(MRJob):
             yield localidade, valor
 
     def reducer_sum(self,localidade,valor):
+        
         yield localidade, sum(valor)
 
     def steps(self):
