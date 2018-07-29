@@ -39,11 +39,14 @@ class BolsaFamilia(MRJob):
     def reducer_sum(self,key,values):
         pagamento = []
         saque = []
+        saldo = []
+
         for pag, saq in values:
             pagamento.append(pag)
             saque.append(saq)
+            saldo.append(pag - saq)
         
-        yield key, (sum(pagamento), sum(saque))
+        yield key, (sum(pagamento), sum(saque), sum(saldo))
              
 
     def steps(self):
